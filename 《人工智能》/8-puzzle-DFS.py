@@ -4,10 +4,6 @@ import numpy as np
 import random
 from collections import deque
 
-import sys
-
-
-
 class DFS(object):
     def __init__ (self):
         '初始化'
@@ -24,8 +20,9 @@ class DFS(object):
         testT =np.array([[1,2,3],
                          [7,8,4],
                          [0,6,5]])
-        self.Start = testS
-        self.Target = testT
+
+        self.Start = S
+        self.Target = T
         print("初始状态为：")
         print (self.Start)
         print("目标状态为：")
@@ -47,7 +44,7 @@ class DFS(object):
             return
         if self.run_DFS():
             print()
-            print("一个最优解如上所示")
+            print("一个解如上所示")
             print("(其中第一行为开始状态，最后一行为目标状态，0代表空格)")
         else:
             print("无解")
@@ -57,7 +54,7 @@ class DFS(object):
         RecordNum = 0
         totalSearch = 0
         Open = deque([(self.Start,0,RecordNum)]) # [(状态、路径长度、记录号)]
-        Record = {self.Start.tostring():(0,'end')}         # {状态:(步数,上一状态)}
+        Record = {self.Start.tostring():(0,'end')}  # {状态:(步数,上一状态)}
         
         while (Open):
             totalSearch += 1
@@ -132,26 +129,23 @@ class DFS(object):
                 elif ( M.tostring() not in Record):
                     Open.appendleft((M,tempN+1,RecordNum))
                     Record[M.tostring()] = (tempN+1,tempM.tostring())
-    
+
         
-        print("搜索完毕，未找到可行解")
+        print("搜索完毕，共搜索"+str(totalSearch)+"步，未找到可行解")
         return False
     def printPath(self, Record,now):
-        '递归打印路径'
+        '循环打印路径'
 
-        if (Record[now][1] != 'end'):
-            num = self.printPath(Record,Record[now][1])
-        else:
-            print()
-            print("初始状态:")
-            print(Record[now][0])
-            print()
-            return 0
-        num += 1
-        print("第"+str(num)+"步:")
-        print(Record[now][0])
-        print()
-        return num
+        path = []
+        while now != 'end':
+            path.append(now)
+            now = Record[now][1]
+        for index,i in enumerate(path):
+            temp = np.fromstring(i,dtype='int')
+            print('第'+str(index)+'步:')
+            print(temp.reshape((3,3)))            
+
+        return 
         
 
 

@@ -112,9 +112,9 @@ def BFS(Start,Target):
                 Record.append((M,tempRecordNum))
                 Closed.add(M.tostring())
         
-        #print(str(tempRecordNum)+'and'+str(totalSearch))
+       
         
-    print("搜索完毕，未找到可行解")
+    print("搜索完毕，共搜索"+str(totalSearch)+"步，未找到可行解")
     return False
 
 def printPath(Record,now):
