@@ -84,6 +84,16 @@ CREATE TABLE Emp
     empage SMALLINT,
     Deptno CHAR(10)
     FOREIGN KEY(DEptno) REFERENCES dept(deptno));
+
+# 
+GRANT SELECT,INSERT
+ON TABLE Student
+TO ZhangSan
+
+# 
+REVOKE INSERT
+ON TABLE Student
+FROM Zhangsan 
     
 
 
