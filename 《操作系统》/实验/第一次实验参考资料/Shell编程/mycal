@@ -1,0 +1,11 @@
+#!/bin/sh
+case "$#" in 
+0) cal
+;;
+1) cal $1
+;;
+2) cal $1 $2
+;;
+*) echo "parameter error"
+esac
+
